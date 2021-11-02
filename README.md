@@ -99,3 +99,24 @@ int main()
 - 浮点型：float 、double
 - 字符型：char
 
+```c
+int DataType() 
+{
+	int a;
+	a = 20;
+
+	printf("%d \n",a);
+
+    printf("%d\n", sizeof(char));
+    printf("%d\n", sizeof(short));
+    printf("%d\n", sizeof(int));
+    printf("%d\n", sizeof(long));
+    printf("%d\n", sizeof(long long));
+    printf("%d\n", sizeof(float));
+    printf("%d\n", sizeof(double));
+    printf("%d\n", sizeof(long double));
+
+	return 0;
+}
+```
+

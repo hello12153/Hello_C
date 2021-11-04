@@ -102,34 +102,160 @@ int main()
 ```c
 int DataType() 
 {
-	int a;
-	a = 20;
+	int num = 20;
+    char byte_c = 'a' ;
+    float num_f = 98.1f;
+   
+    printf("%d\n",num);
+    printf("%c\n",byte_c);
+    printf("%d\n",num_f);
+    
+	return 0;
+}
+```
 
-	printf("%d \n",a);
+* **注**：在给float类型变量赋值时，数值后面应加上‘f/F’，如：35.7f、39.6F
 
-    printf("%d\n", sizeof(char));
-    printf("%d\n", sizeof(short));
-    printf("%d\n", sizeof(int));
-    printf("%d\n", sizeof(long));
-    printf("%d\n", sizeof(long long));
-    printf("%d\n", sizeof(float));
-    printf("%d\n", sizeof(double));
-    printf("%d\n", sizeof(long double));
+* 占位符：在printf()函数可以输出各种类型的变量，在""中输入格式字符%d或%c、%f，这样的字符为占位符，用于给未确定变量占位
+
+  
+
+* %d：为十进制格式数据预占位
+
+* %c：为字符格式数据预占位
+
+* %f：为浮点型数据预占位
+
+* %p：以内存地址形式预占位
+
+  
+
+* 计算机存储单位：bit - byte(字节) - kb - mb - gb - tb，计算机最小单位：bit，一个bit存放一个二进制。一个byte等于8个bit
+
+* 二进制：0,1 二进制只有0或1表示
+
+* **sizeof(datatype)**：该方法用于输出数据的类型大小，单位字节
+
+  ```c
+  #include <stdio.h>
+  int main()
+  {
+      printf("%d\n", sizeof(char));
+      printf("%d\n", sizeof(short));
+      printf("%d\n", sizeof(int));
+      printf("%d\n", sizeof(long));
+      printf("%d\n", sizeof(long long));
+      printf("%d\n", sizeof(float));
+      printf("%d\n", sizeof(double));
+      printf("%d\n", sizeof(long double));
+      
+      return 0;
+  }
+  ```
+
+  
+
+* 存在多种的类型，是为了更加丰富的表达生活中的各种值
+
+  
+
+#### **全局变量**与**局部变量**：
+
+全局变量作用域大于局部变量，局部变量定义于代码块中，其作用域仅限于在这个代码块中
+
+```c
+#include <stdio.h>
+int global = 2019;//全局变量
+int main()
+{
+    int local = 2018;//局部变量
+    int global = 2020;//局部变量
+    printf("global = %d\n", global);
+    return 0;
+}
+```
+
+**优先级**：当局部变量和全局变量同名的时候，局部变量优先使用
+
+#### 变量的**作用域**和**生命周期**
+
+-  作用域：程序代码中所用到的名字并不总是有效/可用的而限定这个名字的可用性的代码范围就是这个名字的作用域
+  *		1. 局部变量的作用域是变量所在的局部范围，也就是代码块。
+  *		2. 全局变量的作用域是整个工程。
+- 生命周期：变量的创建到变量的销毁之间的一个时间段
+  *		1. 局部变量的生命周期是：进入作用域生命周期开始，出作用域生命周期结束。
+  *		2. 全局变量的生命周期是：整个程序的生命周期。
+
+##### 变量使用
+
+变量可用于数字计算或其他科学计算
+
+```c
+#include <stdio.h>
+int main()
+{
+	int num1 = 0;
+	int num2 = 0;
+	int sum = 0;
+	printf("输入两个操作数:>");
+	scanf("%d %d", &a, &b);
+	sum = num1 + num2;
+	printf("sum = %d\n", sum);
+	return 0;
+}
+```
+
+- 输入函数：C库中用于读取键盘输入数据的函数，如：scanf(data) ...
+- 输出函数：C库中向屏幕输出数据的函数，如：printf(data) ...
+- 变量的内存地址：在定义变量时，程序会在内存中开辟一小块空间用于存储数据，而这一小块空间会以变量名命名，还会有一个唯一的标识 - 内存地址，用以
+
+注：**disable:C4996**错误代码，这是关于安全性的警告，由于高版本Visual Studio弃用了标准C库中的许多函数和全局变量，导致c++无法正常识别函数，从而提示4996代码。
+
+* 解决 C4996 问题，建议更改代码，或关闭4996错误代码提示
+* 在工程前第一行引用代码#define _CRT_SECURE_NO_WARNINGS 1 或 #pragma warning(suppress : 4996) 用于关闭4996提示
+* Visual Studio提供的函数只能在vs运行在gcc上无法正常运行，不具备跨平台性，强烈要求使用原C语言提供的函数
+
+### 常量
+
+不可以直接改变的变量，和变量的定义的形式有所差异
+
+* 常见的常量类形：
+  * 字面常量
+  *				 const 修饰的常变量，但其本质还是变量
+  * #define 定义的标识符常量
+  * 枚举常量
+* 枚举：有默认值
+
+```c
+#include<stdio.h>
+
+#define MIX 1//用define定义的常量
+
+int Constants();
+
+//枚举举例
+enum snum
+{
+	max = 0,
+	sele = 1
+};
+
+int Constants()
+{
+	//字面变量
+	//300
+	//3.14
+
+	//在变量定义的前面加上修饰const可以定义常变量，但其本质还是变量
+	int num_0 = 1;
+	const int num_1 = 4;
+	//使用枚举
+	enum snum num_2 = sele;
+	
+	//此num因为加了const修饰，无法再次赋值
+	//num = 8;
 
 	return 0;
 }
 ```
 
-* 占位符：在printf()函数可以输出各种类型的变量，在""中输入格式字符%d或%c、%f，这样的字符为占位符，用于给未确定变量占位
-* 
-* %d：为十进制格式数据预占位
-* %c：为字符格式数据预占位
-* %f：为浮点型数据预占位
-* %p：以内存地址形式预占位
-* 
-* 计算机存储单位：bit - byte(字节) - kb - mb - gb - tb，计算机最小单位：bit，一个bit存放一个二进制。一个byte等于8个bit
-* 二进制：0,1 二进制只有0或1表示
-* 
-* sizeof(datatype)：该方法用于输出数据的类型大小，单位字节
-* 
-* 注意：存在多种的类型，是为了更加丰富的表达生活中的各种值

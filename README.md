@@ -259,3 +259,87 @@ int Constants()
 }
 ```
 
+#### 字符串
+
+由字符组成的字符数组，或由双引号（Double Quote）引起来的一串字符称为字符串字面值，如："hello C"、"你好！"
+
+**注：**字符串的结束标志是一个\0 的转义字符。在计算字符串长度的时候\0 是结束标志，不算作字符串内容。且 \0 不算作字符串内容,但 \0 在数组中占一个位置
+
+```c
+#include<stdio.h>
+
+int char_arr();
+
+int char_arr()
+{
+    //两种都可以定义字符串
+    char arr_0[6] = {'h','e','l','l','o'，'\0'};
+    char arr_1[6] = "hello\0";
+    
+    //输出结果都是 hello
+    printf("%s", arr_0);
+    printf("%s", arr_1);
+    return 0;
+}
+```
+
+**strlen(arr_name)**：string length 是C语言提供用于计算字符串长度的函数。头文件 string.h 提供了对字符串操作的函数
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+int char_strlen();
+
+int char_strlen()
+{
+    char arr_0[] = "hello";
+    char arr_1[6] = "hello";
+    
+    char arr_2[] = {'h','e','l','l','o'};
+    char arr_3[6] = {'h','e','l','l','o'};
+    
+    printf("%d", strlen(arr_0));
+	printf("%d", strlen(arr_1));
+    
+    printf("%d", strlen(arr_2));//因为定义数组时没有给定成员个数，当计算长度时数组会在
+	printf("%d", strlen(arr_3));
+}
+```
+
+### 转义字符
+
+在字符前加上 \ 使其具有特殊的意义
+
+```c
+#include<stdio.h>
+
+int escaped_characters();
+
+int escaped_characters()
+{
+	//换行
+	printf("\n");
+
+	//表示 ' 字符
+	printf("\'");
+
+	//警告字符，蜂鸣
+	printf("\a");
+
+	//退格,向后退一格再输出
+	printf("ad \b d");
+
+	//水平制表符
+	printf("a\tb");
+
+	//转义八进制数字
+	printf("\32\n");//将32作为八进制数转成十进制数再到ASCII码表找到对应的字符再转义
+
+	//转义十六进制数字
+	printf("\x12");//将12作为十六进制数转成十进制数再到ASCII码表找到对应的字符再转义
+
+	return 0;
+}
+```
+

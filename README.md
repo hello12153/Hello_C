@@ -267,9 +267,7 @@ int Constants()
 
 ```c
 #include<stdio.h>
-
 int char_arr();
-
 int char_arr()
 {
     //两种都可以定义字符串
@@ -290,7 +288,6 @@ int char_arr()
 #include<string.h>
 
 int char_strlen();
-
 int char_strlen()
 {
     char arr_0[] = "hello";
@@ -313,9 +310,7 @@ int char_strlen()
 
 ```c
 #include<stdio.h>
-
 int escaped_characters();
-
 int escaped_characters()
 {
 	//换行
@@ -344,4 +339,164 @@ int escaped_characters()
 ```
 
 #### 注释
+
+向读者标注代码的作用，让读者更好解析代码
+
+```c
+#include<stdio.h>
+int note();
+int note()
+{
+	//两种风格都可以用，看使用场景
+	//C风格
+	/*块注释，缺点：不可以嵌套注释*/
+	
+	//C++风格
+	//行注释，可以注释一行也可以注释多行
+}
+```
+
+### 流程控制语句
+
+当程序执行main方法的时候会从 第一行 开始往下执行，直到整个代码全部执行完成。在此过程中程序按照书写的顺序，不会跳过任何一行代码。像这样的执行流程就是常见的 顺序执行结构
+
+```c
+int add();
+int add() 
+{
+    int a = 3 ;
+    int b = 5 ; 
+    int sum ;
+    sum = a + b;
+    printf("%d + %d = %d",a,b,sum);
+	return 0;
+}
+```
+
+**while循环**
+
+循环结构：重复做一个动作，直到结果达到理想值
+
+```c
+int Process_Control();
+int Process_Control()
+{
+	int line = 0;
+	while (line <= 20000)
+	{
+		line++;
+		printf("%d\n",line);
+	}
+
+	if (line == 20000)
+	{
+		printf("%d 了", line);
+	}
+
+	return 0;
+}
+```
+
+### 函数
+
+可以根据**程序的逻辑**和**任务的分工**把代码划分到不同的自定义函数中，main()更关心**业务逻辑和处理流程**，需要执行具体任务的时候，调用这些自定义的函数就可以了。
+
+```c
+#include<stdio.h>
+int Function();
+int Add(int a, int b);
+
+int Add(int a, int b)
+{
+	int sum;
+	sum = a + b;
+	return sum;
+}
+
+int Function()
+{
+	int a, b,sum;
+	a = 5;
+	b = 6;
+	sum = Add(a, b);
+	printf("%d + %d = %d", a, b, sum);
+	return 0;
+}
+```
+
+#### 数组
+
+存放数据长度固定的容器，并且其数据类型也是一致的。
+
+* 定义：与定义变量有些许相同，在变量后加上 [] 和成员个数，等号后面是数组的成员，例：
+
+  ```c
+  int arr[6] = {1,2,3,4,5,6};
+  ```
+
+  
+
+* 数组下标：数组存储在内存中，每次访问数组成员需要知道其下标，数组的下标从0开始，也就是第一个成员对应的下标是0，第二个是1，以此类推直到最后一个成员的下标也就是 成员个数n-1，例：
+
+  ```c
+  arr[i] = 14;//i就是下标
+  arr[4];//4就是下标
+  ```
+
+  
+
+```c
+#include<stdio.h>
+int Arrays();
+int Arrays()
+{
+	int arr[6] = { 1,2,3,4,5,6 };
+
+	for (int i = 0; i < 6; i++)
+	{
+		printf("%d\n", arr[i]);//i为数组的下标
+	}
+
+	return 0;
+}
+```
+
+#### 操作符
+
+算术操作符，移位操作符，位操作符，赋值操作符，单目操作符，关系操作符，逻辑操作符，条件操作符，逗号表达式，下标引用、函数调用和结构成员
+
+移(2进制)位操作符：
+
+```c
+/*	<<     左移运算符，用于将整数左移指定位数，移位规则：左边抛弃、右边补0
+	>>     右移运算符，用于将整数右移指定位数                          */
+```
+
+右移位规则分两种：
+
+* 逻辑移位（无符号） 左边用0填充，右边丢弃
+
+* 算术移位（有符号） 左边用原该值的符号位填充，右边丢弃
+
+  ```c
+  /*	例：int a = 1;  
+  	a<<1;  
+  	整型1占4个字节，一个字节8个bit， 32bit位，1个bit用0或1表示，00000000 代表一个字节
+  	00000000 00000000 00000000 00000001
+  	<<1 向左移1个bit，左边溢出的0去掉，右边补一个0
+  	00000000 00000000 00000000 00000010										*/
+  ```
+
+```c
+#include<stdio.h>
+int Operators();
+int Operators()
+{
+	int a = 1;
+	int b = a << 2;//b等于a移位后的值，a不变
+
+	printf("a = %d, b = %d", a, b);
+	return 0;
+}
+```
 

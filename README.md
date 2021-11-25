@@ -33,7 +33,7 @@ int main()
 ```
 
 
-### C程序的结构：
+## C程序的结构：
 一个C程序由头文件和函数组成
 -  **#include**   这是一条预处理命令，是通知编译系统在对该程序进行编译前做一些预处理工作。
 -  #include<**stdio.h**>  当预处理器发现#include指令后，会寻找后面<>中的文件，并把该文件的内容包含到当前程序中，也就是copy include头文件的内容到当前行，代替了#include指令。**stdio.h** 这是C标准的输入输出头文件
@@ -763,5 +763,102 @@ printf("name = %s age = %d sex = %s id = %s\n", s.name, s.age, s.sex, s.id);
 //->操作符
 struct Stu *ps = &s;
 printf("name = %s age = %d sex = %s id = %s\n", ps->name, ps->age ,ps->sex, ps->id);
+```
+
+### 分支语句
+
+#### if语句
+
+用于单分支选择结构
+
+exp为表达式，表达式的结果必须是true(0)或false(1)；
+
+1. 如果exp为true，执行语句1
+2. exp为false，执行else后面的语句n，多个else if(exp)以此类推
+3. 如果要执行多条语句必须使用代码块`{}`
+
+```c
+//结构1
+if(exp){
+    //语句1;
+}
+//结构2
+if(exp){
+    //语句1;
+}else{
+    //语句2;
+}
+//结构3
+if(exp1){
+    //语句1;
+}else if(exp2){
+    //语句2;
+}else ...
+```
+
+```c
+int num = 1;
+if(num + i >10)
+    printf("i = %d",i);
+else if(num + i > 15)
+    printf("i = %d",i++);
+else if(num + i > 20)
+    printf("i = %d",i += 2);
+else
+    printf("num = %d",num);
+```
+
+#### switch语句
+
+多分支选择结构
+
+exp为整形表达式；case为选择项;break用于结束选择，或跳出循环;default为默认选项
+
+1. 通过exp的值来选择执行哪个case
+2. 执行完case后通过break跳出switch
+3. 如果所有的case都与之不匹配则执行default
+4. 如果case中没有break则继续向下执行case，直到遇到break，这种现象叫case穿透
+
+```c
+switch(exp)
+{
+    case n:
+        //语句体；
+        break;
+    case n+1:
+        //语句体；
+        break;
+        ...
+    default:
+        //语句体；
+        break;
+}
+```
+
+```c
+int n = 1;
+int m = 2;
+switch (n)
+{
+case 1:
+	m++;
+case 2:
+	n++;
+case 3:
+	switch (n)
+	{//switch允许嵌套使用
+		case 1:
+			n++;
+		case 2:
+			m++;
+			n++;
+		break;
+	}
+case 4:
+	m++;
+	break;
+default:
+	break;
+}
 ```
 

@@ -818,6 +818,7 @@ exp为整形表达式；case为选择项;break用于结束选择，或跳出循�
 2. 执行完case后通过break跳出switch
 3. 如果所有的case都与之不匹配则执行default
 4. 如果case中没有break则继续向下执行case，直到遇到break，这种现象叫case穿透
+5. 注：在switch中，exp必须是整形表达式；case后面的必须是整形常量表达式
 
 ```c
 switch(exp)

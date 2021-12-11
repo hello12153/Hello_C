@@ -258,6 +258,7 @@ int Constants()
 	int num_0 = 1;
 	const int num_1 = 4;
 	//使用枚举
+	//将枚举snum中sele的值赋给num_2
 	enum snum num_2 = sele;
 	
 	//此num因为加了const修饰，无法再次赋值

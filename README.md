@@ -1,4 +1,3 @@
-
 # 这是小陈的自学C语言的频道
 
 ## 那什么是C语言呢？
@@ -309,7 +308,8 @@ int char_strlen()
     printf("%d", strlen(arr_0));
 	printf("%d", strlen(arr_1));
     
-    printf("%d", strlen(arr_2));//因为定义数组时没有给定成员个数，当计算长度时数组会在
+    //因为定义数组时没有给定成员个数，当计算长度时数组会先计算已知的成员个数，再计算随机的成员个数，直到遇到\n停止计算
+    printf("%d", strlen(arr_2));
 	printf("%d", strlen(arr_3));
 }
 ```
@@ -482,7 +482,8 @@ int Arrays()
 {
 	int arr[6] = { 1,2,3,4,5,6 };
 
-	for (int i = 0; i < 6; i++)
+    //sizeof(arr) / sizeof(arr[0]) 用于计算数组的成员个数方便循环
+	for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++)
 	{
 		printf("%d\n", arr[i]);//i为数组的下标
 	}
@@ -958,16 +959,68 @@ while((ch = getchar()) != '\n' );
 
 - 在for循环中也可以出现break和continue,在for中的continue不会跳过调整变量这个步骤
 - 可以定义多个初始变量，可以有多个变化变量
+- 如果判断条件是赋值语句，值为0，则为假不进入for循环；值为1（<0），则为真执行for循环
 
 ```C
 for(int i = 0; i < 10; i++)
 {
     i += 1;
     if(i == 5)
-        continue;
+        continue;//当i==5跳过本次循环，进入下一循环，i++照常运行
     if(i == 11)
-        break;
+        break;//当i==11结束for循环
     printf("%d",i);
 }
 ```
 
+```c
+//判断条件是赋值语句
+//判断条件k=0，0为假，所以不会进入for循环，如果判断条件k≠0，1为真，执行for循环
+for(int i = 0,int k = 0; k= 0; i++, k++)
+{
+    k++;
+}
+printf("hello\n");//不执行for，直接输出hello
+```
+
+```C
+//for死循环
+//如果判断条件被省略了，那判断条件的结果：恒为真
+for(;;)
+{
+    printf("hello\n");
+}
+```
+
+```c
+//两个循环变量的for
+for(int x = 0, int y = 0;x<2 && y<5;++x,y++)
+{
+    printf("hello\n");
+}
+```
+
+------
+
+#### do...while循环
+
+循环先执行一次循环体再进行判断
+
+1. 先执行一次循环体，再进入while判断
+2. 判断结果为真，重复1步骤
+3. 判断结果为假，终于循环
+
+```c
+int i = 0;
+do 
+{
+	i++;
+	if (5 == i)
+	{
+		break;
+	}
+	printf("i = %d\n", i);
+} while (i > 0);
+```
+
+- break和continue和while中的相似

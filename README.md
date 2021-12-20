@@ -1169,6 +1169,8 @@ int main()
 }
 ```
 
+------
+
 ### 函数声明与定义
 
 声明，告诉编译器，函数的名字、参数、返回值类型，但不一定会去定义这个函数。声明要出现在使用之前，一般声明放在头文件中
@@ -1196,9 +1198,29 @@ int Add(int a,int b)
 
 ### 函数递归
 
-程序调用自身的编程技巧，把大型复杂的问题层层转化为一个与原问题相似的规模较小的问题。主要思考方式：大事化小
+程序调用自身的编程技巧，把大型复杂的问题层层转化为一个与原问题相似的规模较小的问题。主要思考方式：大事化小。
 
 递归必要条件
 
-- 存在限制条件，当满足这个限制条件的时候，递归便不再继续。
+- 存在限制条件，当满足这个限制条件的时候，递归便不再继续。 
 - 每次递归调用之后越来越接近这个限制条件。
+
+```c
+#include<stdio.h>
+#include "Function_Recursion.h"//头文件，声明了strLens()、test_Recursion()
+int strLens(const char* str)
+{
+	if ('\0' == *str)
+		return 0;
+	else
+		return 1 + strLens(str + 1);
+}
+
+void test_Recursion() 
+{
+	char arr[10] = {'a','b','c', 'd', 'e', 'f', 'g'};
+	int lenght = strLens(arr);
+	printf("%d", lenght);
+}
+```
+

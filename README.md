@@ -1044,7 +1044,7 @@ do
 
 ------
 
-## 函 数2
+## 函 数
 
 是一个大型程序中的某部分代码， 由一个或多个语句块组成。
 
@@ -1304,3 +1304,38 @@ int arr_03[][3] = {1,2,3,4};
 2. &数组名，取出的是数组的地址。&数组名，数组名表示整个数组。
 
 ### 冒泡排序
+
+```c
+//main
+int arr[] = { 10,8,5,94,7,3,2,9,1,91,51 };
+int length = sizeof(arr) / sizeof(arr[0]);
+Arrays_Bubble_Sort(arr, length);
+for (int i = 0; i < length; i++){
+	if (i >= length-1)
+		 printf("%d\n", arr[i]);
+	else
+		printf("%d, ", arr[i]);
+}
+
+//void Arrays_Bubble_Sort(int *arr, int length) 
+int i = 0;
+int tmp = 0;
+int flag;
+for (i = 0; i < length-1; i++){
+	int j = 0;
+	flag = 1;
+	for ( j = 0; j < length - 1 - i; j++)
+	{
+		if (arr[j] > arr[j+1]){
+			tmp = arr[j];
+			arr[j] = arr[j + 1];
+			arr[j + 1] = tmp;
+			//tmp = 0;
+			flag = 0;//如果数组arr是无序数组，把0赋值给flag
+		}
+	}
+	if (flag)
+        break;//如果数组arr是有序的，即跳出for循环
+}
+```
+
